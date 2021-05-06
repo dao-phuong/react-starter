@@ -1,3 +1,5 @@
+const { REACT_APP_CLOUD_API } = process.env;
+
 function parseJSON(response) {
   return new Promise(resolve => (
     response.status === 204 ? (
@@ -10,7 +12,7 @@ function parseJSON(response) {
 
 export function request(payload){
   return new Promise((resolve, reject) => {
-    fetch(payload.url, {
+    fetch(`${REACT_APP_CLOUD_API}${payload.url}`, {
         method: payload.method, // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, cors, *same-origin
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -24,4 +26,11 @@ export function request(payload){
       .then((response) => response.ok ? resolve(response.json) : reject(response.json))
       .catch(error => reject(error));
   });
+}
+
+const requestHeader = () => {
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + ''
+  }
 }

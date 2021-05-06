@@ -7,8 +7,9 @@ function* handleLogin(action) {
   try {
     const { userId, password } = action.payload;
     // const result = yield call(api.loginRequest, { userId, password });
-  
-    yield put(actions.loginSucess())
+    const result = yield api.loginRequest({ userId, password })
+
+    yield put(actions.loginSucess({ result: result }))
   } catch (e) {
     yield put(action.loginError());
   }

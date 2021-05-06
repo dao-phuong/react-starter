@@ -1,13 +1,21 @@
 import Login from './../../controllers/login';
-import reducer from './../../controllers/login/reducer';
-import sagas from './../../controllers/login/sagas';
+import reducer from './../../modules/auth/reducer';
+import sagas from './../../modules/auth/sagas';
 
 export default [
   {
     name: 'auth',
-    path: '/auth/login',
+    path: '/',
     component: Login,
     reducer,
     sagas
+  },
+  {
+    name: 'auth',
+    path: '/auth/error',
+    component: Login,
+    reducer,
+    sagas,
+    protected: true,
   }
 ]

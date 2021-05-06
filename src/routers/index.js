@@ -5,17 +5,33 @@ import { Router, Route, Switch } from 'react-router-dom';
 
 import NotMatch from './../controllers/notmatch';
 import { default as login } from './pages/login';
+import booking from './pages/booking';
 
-const routes = [...login];
+const routes = [...login, ...booking];
+
+console.log('routes', routes);
 
 export default connect(state => ({
   auth: state.auth
-}))(({}) => {
+}))(({ auth }) => {
   return (
     <Router history={history} >
       <Switch>
         {
-          routes.map((route, key) => (
+          routes.filter(route => route.protected).map((route, key) => (
+            <Route 
+              key={key}
+              exact={route.exact}
+              path={route.path}
+              render={
+                props => 
+                  auth.isLogin ? React.createElement(route.component, { ...props }) : React.createElement(NotMatch)
+              }
+            />
+          ))
+        }
+        {
+          routes.filter(route => !route.protected).map((route, key) => (
             <Route 
               key={key}
               exact={route.exact}

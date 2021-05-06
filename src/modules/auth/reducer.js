@@ -4,14 +4,17 @@ import * as types from './types';
 const initialState = Immutable({
   user: {},
   success: false,
-  async: false
+  async: false,
+  isLogin: true
 });
 
 const loginRequest = (action, state) => {
+  console.log('action', action);
   return state.merge({ async: true })
 }
 
 const loginSucess = (action, state) => {
+  const { result } = action.payload;
   return state.merge({ success: true, async: false })
 }
 
