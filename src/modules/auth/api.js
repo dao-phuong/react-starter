@@ -1,5 +1,5 @@
 import { request } from './../../core/api';
 
 export const loginRequest = ({ userId, password }) => {
-  return request({});
+  return request({ url: 'https://lscjks.com' });
 }

@@ -5,11 +5,11 @@ const initialState = Immutable({
   user: {},
   success: false,
   async: false,
-  isLogin: true
+  isLogin: true,
+  token: ''
 });
 
 const loginRequest = (action, state) => {
-  console.log('action', action);
   return state.merge({ async: true })
 }
 

@@ -1,3 +1,5 @@
+import store from './store';
+
 const { REACT_APP_CLOUD_API } = process.env;
 
 function parseJSON(response) {
@@ -24,13 +26,22 @@ export function request(payload){
     })
       .then(parseJSON)
       .then((response) => response.ok ? resolve(response.json) : reject(response.json))
-      .catch(error => reject(error));
+      .catch(error => {
+        reject(error);
+      });
   });
 }
 
 const requestHeader = () => {
+  const { token } = store.getState()['auth'];
+  if (token !== '') {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+  }
+
   return {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + ''
   }
 }

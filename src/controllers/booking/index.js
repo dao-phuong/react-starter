@@ -1,6 +1,7 @@
 import React from 'react';
-
 import './styles.scss';
+
+import store from './../../core/store';
 
 class Booking extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Booking extends React.Component {
   }
 
   componentWillMount() {
-
+    // console.log('store', store.getState());
   }
 
   componentDidMount() {

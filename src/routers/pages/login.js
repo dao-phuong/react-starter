@@ -9,13 +9,5 @@ export default [
     component: Login,
     reducer,
     sagas
-  },
-  {
-    name: 'auth',
-    path: '/auth/error',
-    component: Login,
-    reducer,
-    sagas,
-    protected: true,
   }
 ]

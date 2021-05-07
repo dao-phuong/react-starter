@@ -6,18 +6,17 @@ import * as types from './types';
 function* handleLogin(action) {
   try {
     const { userId, password } = action.payload;
-    // const result = yield call(api.loginRequest, { userId, password });
-    const result = yield api.loginRequest({ userId, password })
+    const result = yield call(api.loginRequest, { userId, password });
 
     yield put(actions.loginSucess({ result: result }))
   } catch (e) {
-    yield put(action.loginError());
+    yield put(actions.loginError());
   }
 }
 
 function* appSaga() {
   yield all([
-    takeLatest(types.LOGIN_REQUEST, handleLogin),
+    takeLatest(types.LOGIN_REQUEST, handleLogin)
   ]);
 }
 

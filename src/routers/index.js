@@ -9,8 +9,6 @@ import booking from './pages/booking';
 
 const routes = [...login, ...booking];
 
-console.log('routes', routes);
-
 export default connect(state => ({
   auth: state.auth
 }))(({ auth }) => {
@@ -65,5 +63,7 @@ export const sagas = (function() {
       sagas.push(route.sagas);
     }
   });
+
+  console.log('sagas', sagas);
   return sagas;
 })();
